@@ -7,9 +7,7 @@ const app = express();
 const propertyRoutes = require('./Routes/propertyRoutes.js');
 const residentRoutes = require('./Routes/residentRoutes.js');
 
-const dbConnect = async () => {
-    await mongoose.connect(process.env.MONGODB_URI);
-}
+mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('Connected', () => {
     console.log('connected to db');
@@ -21,6 +19,6 @@ app.use('/properties', propertyRoutes);
 app.use('/residents', residentRoutes);
 
 
-app.listen(3000, () => {
+app.listen(3333, () => {
     console.log('Working fine');
 });
