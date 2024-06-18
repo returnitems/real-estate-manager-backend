@@ -1,6 +1,7 @@
 const express = require('express');
 const Property = require('../../models/Property.js');
 
+
 // Get all properties
 const getProperties = async (req, res) => {
     try {
@@ -41,12 +42,12 @@ const createProperty = async (req, res) => {
 // Update property by ID
 const updateProperty = async (req, res) => {
     try {
-        const updateProperty = await Property.findByIdAndUpdate(req.params.propertyId, req.body, {new: true});
-        if (!updateProperty) {
+        const updatedProperty = await Property.findByIdAndUpdate(req.params.propertyId, req.body, {new: true});
+        if (!updatedProperty) {
             res.status(404);
             throw new Error('Property not found.');
         }
-        res.status(200).json(updateProperty);
+        res.status(200).json(updatedProperty);
     } catch (error) {
         console.log(error);
     }
@@ -56,12 +57,12 @@ const updateProperty = async (req, res) => {
 // Delete a property
 const deleteProperty = async (req, res) => {
     try {
-        const deleteProperty = await Property.findByIdAndDelete(req.params.propertyId);
-        if (!deleteProperty) {
+        const deletedProperty = await Property.findByIdAndDelete(req.params.propertyId);
+        if (!deletedProperty) {
             res.status(404);
             throw new Error('Property not found.');
         }
-        res.status(200).json(deleteProperty);
+        res.status(200).json(deletedProperty);
     } catch (error) {
         console.log(error);
     }

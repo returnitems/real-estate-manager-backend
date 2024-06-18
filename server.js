@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 const cors = require('cors');
 const app = express();
+const propertyRoutes = require('./Routes/propertyRoutes.js');
+const residentRoutes = require('./Routes/residentRoutes.js');
 
 const dbConnect = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -15,9 +17,8 @@ mongoose.connection.on('Connected', () => {
 
 app.use(cors());
 app.use(express.json());
-
-const propertyRoutes = require('./Routes/propertyRoutes.js');
 app.use('/properties', propertyRoutes);
+app.use('/residents', residentRoutes);
 
 
 app.listen(3000, () => {
