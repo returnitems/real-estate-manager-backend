@@ -1,5 +1,5 @@
 const express = require('express');
-const Property = require('../../models/Property.js');
+const Property = require('../../models/Property.js')
 
 
 // Get all properties
@@ -69,3 +69,36 @@ const deleteProperty = async (req, res) => {
 };
 
 module.exports = { getProperties, getSingleProperty, createProperty, updateProperty, deleteProperty };
+
+
+// Add a resident to an apartment
+// const addResidentToApartment = async (req, res) => {
+//     try {
+//         const { name, age, occupation, leaseExpiration } = req.body;
+//         const property = await Property.findById(req.params.propertyId);
+
+//         if (property) {
+//             const apartment = property.apartments.id(req.params.apartmentId);
+//             if (apartment) {
+//                 const resident = new Resident({
+//                     name,
+//                     age,
+//                     occupation,
+//                     apartment: apartment.number,
+//                     leaseExpiration,
+//                 });
+
+//                 await resident.save();
+//                 apartment.resident = resident._id;
+//                 await property.save();
+//                 res.status(201).json(resident);
+//             } else {
+//                 res.status(404).json({ message: 'Apartment not found' });
+//             }
+//         } else {
+//             res.status(404).json({ message: 'Property not found' });
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
